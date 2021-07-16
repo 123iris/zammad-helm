@@ -39,8 +39,8 @@ spec:
             value: "{{ $value }}"
           {{- end }}
         securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
+          runAsUser: 0
+          runAsGroup: 0
         volumeMounts:
         - name: {{ template "zammad.fullname" . }}
           mountPath: /opt/zammad
@@ -52,8 +52,8 @@ spec:
         image: {{ .Values.image.repository }}:{{if eq .Values.image.repository "zammad/zammad-docker-compose"}}zammad-{{ end }}{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
+          runAsUser: 0
+          runAsGroup: 0
         env:
           - name: "POSTGRESQL_PASS"
             valueFrom:
@@ -76,8 +76,8 @@ spec:
         image: {{ .Values.image.repository }}:{{if eq .Values.image.repository "zammad/zammad-docker-compose"}}zammad-{{ end }}{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
+          runAsUser: 0
+          runAsGroup: 0
         env:
           {{ if or .Values.envConfig.elasticsearch.pass .Values.secrets.elasticsearch.useExisting }}
           - name: "ELASTICSEARCH_PASSWORD"
@@ -115,8 +115,8 @@ spec:
         - name: http
           containerPort: 8080
         securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
+          runAsUser: 0
+          runAsGroup: 0
         volumeMounts:
         - name: {{ template "zammad.fullname" . }}
           mountPath: /opt/zammad
@@ -144,8 +144,8 @@ spec:
         image: {{ .Values.image.repository }}:{{if eq .Values.image.repository "zammad/zammad-docker-compose"}}zammad-{{ end }}{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
+          runAsUser: 0
+          runAsGroup: 0
         command:
           - "bundle"
           - "exec"
@@ -191,8 +191,8 @@ spec:
         image: {{ .Values.image.repository }}:{{if eq .Values.image.repository "zammad/zammad-docker-compose"}}zammad-{{ end }}{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
+          runAsUser: 0
+          runAsGroup: 0
         command:
           - "bundle"
           - "exec"
@@ -212,8 +212,8 @@ spec:
         image: {{ .Values.image.repository }}:{{if eq .Values.image.repository "zammad/zammad-docker-compose"}}zammad-{{ end }}{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
+          runAsUser: 0
+          runAsGroup: 0
         command:
           - "bundle"
           - "exec"
@@ -263,9 +263,9 @@ spec:
 {{ toYaml . | indent 8 }}
     {{- end }}
       securityContext:
-        fsGroup: 1000
-        runAsUser: 1000
-        runAsGroup: 1000
+        fsGroup: 0
+        runAsUser: 0
+        runAsGroup: 0
       volumes:
       - name: {{ template "zammad.fullname" . }}-nginx
         configMap:
